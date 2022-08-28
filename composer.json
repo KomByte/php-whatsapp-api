@@ -1,0 +1,23 @@
+{
+    "name": "mateodioev/meta-whatsapp-api",
+    "description": "Access to Whatsapp cloud api (meta)",
+    "type": "library",
+    "require": {
+        "mateodioev/request": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mateodioev\\WhatsappApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mateo",
+            "email": "mateodioev@noemail.com"
+        }
+    ]
+}
