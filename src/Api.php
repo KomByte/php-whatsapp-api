@@ -25,7 +25,7 @@ class Api
 
   }
 
-  public function send(string $endpoint, array $payload, string $version = self::VERSION)
+  public function send(string $endpoint, array $payload, string $version = self::VERSION): \stdClass
   {
     $this->endpoint = sprintf(self::BASE_URL, $version, $this->phoneId);
     $payload = json_encode($this->addOpt($payload)->payload);
