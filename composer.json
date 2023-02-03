@@ -3,7 +3,8 @@
     "description": "Access to Whatsapp cloud api (meta)",
     "type": "library",
     "require": {
-        "mateodioev/request": "^2.0"
+        "mateodioev/request": "^2.0",
+        "ext-curl": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9"

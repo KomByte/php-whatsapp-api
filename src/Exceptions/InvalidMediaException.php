@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Mateodioev\WhatsappApi\Exceptions;
 
@@ -7,5 +7,5 @@ use UnexpectedValueException;
 
 final class InvalidMediaException extends UnexpectedValueException implements ExceptionInterface
 {
-  # code...
+    # code...
 }
