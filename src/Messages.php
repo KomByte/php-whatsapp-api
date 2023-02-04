@@ -4,7 +4,7 @@ namespace Mateodioev\WhatsappApi;
 
 use Mateodioev\Utils\{Arrays, Network};
 use Mateodioev\WhatsappApi\Exceptions\InvalidMediaException;
-
+use Mateodioev\WhatsappApi\Objects\{Contacts, Interactive, Location, Media, Reaction, Template, Text};
 use stdClass;
 
 use function substr;
@@ -14,15 +14,11 @@ use function substr;
  */
 class Messages
 {
-    protected Api $api;
     protected string $type = 'messages';
 
     private array $allowedMediaTypes = ['audio', 'document', 'image', 'sticker', 'video'];
 
-    public function __construct(Api $api)
-    {
-        $this->api = $api;
-    }
+    public function __construct(protected Api $api) {}
 
     /**
      * Reply to message id
@@ -56,19 +52,34 @@ class Messages
     public function sendText(string $message, bool $previewUrl = false): stdClass
     {
         return $this->api->addOpt([
-          'recipient_type' => 'individual',
-          'type' => 'text',
-          'text' => [
-            'preview_url' => $previewUrl,
-            'body' => $message
-          ]
-        ])->send($this->type, $this->api->payload);
+            'recipient_type' => 'individual',
+            'type' => 'text',
+            'text' => Text::new()->setBody($message)->setPreviewUrl($previewUrl)->get()
+        ])->send($this->type);
     }
+
+    /**
+     * Reaction to message
+     *
+     * @param string $messageId The WhatsApp Message ID (wamid) of the message on which the reaction should appear.
+     * @param string $emoji Emoji to appear on the message. Send empty string to remove previously reaction.
+     * @throws \ReflectionException
+     * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#reaction-object
+     */
+	public function sendReaction(string $messageId, string $emoji): stdClass
+	{
+		return $this->api->addOpt([
+			'recipient_type' => 'individual',
+			'type' => 'reaction',
+            'reaction' => Reaction::new()->setMessageId($messageId)->setEmoji($emoji)->get()
+		])->send($this->type);
+	}
 
     /**
      * Send media
      * @param string $mediaType audio, document, image, sticker, or video
      * @param string $media Media url or id
+     * @throws \ReflectionException
      * @see https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-messages#media-messages
      */
     public function sendMedia(string $mediaType, string $media, string $caption = ''): stdClass
@@ -81,68 +92,67 @@ class Messages
         }
 
         // Media type for send
-        $type = 'id';
+        $mediaObj = Media::new()->setId($media);
         if (Network::IsValidUrl($media)) {
-            $type = 'link';
+            $mediaObj->setLink($media);
         }
-
         $caption = substr($caption, 0, 1024);
+        $mediaObj->setCaption(substr($caption, 0, 1024));
 
         return $this->api->addOpt([
-          'recipient_type' => 'individual',
-          'type' => $mediaType,
-          $mediaType => [
-            $type => $media,
-            'caption' => $caption
-          ]
-        ])->send($this->type, $this->api->payload);
+            'recipient_type' => 'individual',
+            'type' => $mediaType,
+            $mediaType => $mediaObj->get()
+        ])->send($this->type);
     }
 
-      /**
-       * Send location of the user
-       *
-       * @param mixed $long Longitude
-       * @param mixed $lat Latitude
-       * @param string $name
-       * @param string $address
-       * @return stdClass
-       */
-    public function sendLocation(mixed $long, mixed $lat, string $name, string $address): stdClass
+    /**
+     * Send location of the user
+     * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#location-object
+     * @throws \ReflectionException
+     */
+    public function sendLocation(Location $location): stdClass
     {
         return $this->api->addOpt([
-          'type' => 'location',
-          'location' => [
-            'longitude' => $long,
-            'latitude' => $lat,
-            'name' => $name,
-            'address' => $address
-          ]
-        ])->send($this->type, $this->api->payload);
+            'type' => 'location',
+            'location' => $location->get()
+        ])->send($this->type);
     }
 
     /**
      * https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#contacts-object
      *
-     * @param array $contacts Create list of contacts with Messages::contact() method
+     * @param Contacts[] $contacts Array of contacts
+     * @throws \ReflectionException
      */
     public function sendContact(array $contacts): stdClass
     {
         return $this->api->addOpt([
           'type' => 'contacts',
-          'contacts' => $contacts
-        ])->send($this->type, $this->api->payload);
+          'contacts' => array_map(fn($contact) => $contact->get(), $contacts)
+        ])->send($this->type);
     }
 
-    public function sendInteractive(array $interactive): stdClass
-    {
-        return $this->api->addOpt($interactive)->send($this->type, $this->api->payload);
-    }
-
-    public function sendTemplate(): stdClass
+    /**
+     * @throws \ReflectionException
+     */
+    public function sendInteractive(Interactive $interactive): stdClass
     {
         return $this->api->addOpt([
-          ''
-        ])->send($this->type, $this->api->payload);
+            'type' => 'interactive',
+            'interactive' => $interactive->get()
+        ])->send($this->type);
+    }
+
+    /**
+     * @throws \ReflectionException
+     */
+    public function sendTemplate(Template $template): stdClass
+    {
+        return $this->api->addOpt([
+          'type' => 'template',
+            'template' => $template->get()
+        ])->send($this->type);
     }
 
     /**
@@ -153,21 +163,7 @@ class Messages
         $this->api->addOpt([
           'status' => 'read',
           'message_id' => $messageId
-        ])->send($this->type, $this->api->payload);
+        ])->send($this->type);
     }
 
-    public static function contact(array $name, ?array $addresses=null, ?string $birthday=null, ?array $emails=null, ?array $org=null, ?array $phones=null, ?array $urls=null): array
-    {
-        $payload = [
-          'name' => $name,
-          'addresses' => $addresses,
-          'birthday' => $birthday,
-          'emails' => $emails,
-          'org' => $org,
-          'phones' => $phones,
-          'urls' => $urls
-        ];
-
-        return Arrays::DeleteEmptyKeys($payload);
-    }
 }
