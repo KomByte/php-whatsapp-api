@@ -94,7 +94,8 @@ class Messages
         // Media type for send
         $mediaObj = Media::new()->setId($media);
         if (Network::IsValidUrl($media)) {
-            $mediaObj->setLink($media);
+            $mediaObj->setLink($media)
+                ->setId('');
         }
         $caption = substr($caption, 0, 1024);
         $mediaObj->setCaption(substr($caption, 0, 1024));
