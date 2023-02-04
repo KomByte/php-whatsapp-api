@@ -31,14 +31,12 @@ class Media extends abstractObject implements ObjectInterface
 
     public function setId(string $id): Media
     {
-        $this->setLink('');
         $this->id = $id;
         return $this;
     }
 
     public function setLink(string $link): Media
     {
-        $this->setId('');
         $this->link = $link;
         return $this;
     }

@@ -9,7 +9,7 @@ use Mateodioev\Utils\Arrays;
  */
 class Template extends abstractObject implements ObjectInterface
 {
-    public string $namespace;
+    public string $namespace = '';
     public string $name;
     public Language $language;
     public ?array $components = null;
