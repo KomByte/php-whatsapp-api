@@ -23,7 +23,7 @@ class Contacts extends abstractObject implements ObjectInterface
     public array $emails = [];
 
     public Name $name;
-    public Org $org;
+    public ?Org $org = null;
 
     /**
      * @var Phone[]

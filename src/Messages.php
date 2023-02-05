@@ -2,7 +2,7 @@
 
 namespace Mateodioev\WhatsappApi;
 
-use Mateodioev\Utils\{Arrays, Network};
+use Mateodioev\Utils\Network;
 use Mateodioev\WhatsappApi\Exceptions\InvalidMediaException;
 use Mateodioev\WhatsappApi\Objects\{Contacts, Interactive, Location, Media, Reaction, Template, Text};
 use stdClass;
