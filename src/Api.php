@@ -17,23 +17,33 @@ class Api
     public string $endpoint;
 
     public function __construct(private readonly string $token, private readonly int $phoneNumberId)
-    {}
+    {
+    }
 
     public function send(string $endpoint, string $version = self::VERSION): \stdClass
     {
         $this->endpoint = sprintf(self::BASE_URL, $version, $this->phoneNumberId);
 
-		$request = Request::POST($this->endpoint, json_encode($this->payload))
-			->addOpts([
-				CURLOPT_HTTPHEADER => [
-					'Authorization: Bearer ' . $this->token,
-					'Content-Type: application/json'
-				]
-			]);
+        // Use multipart/form-data if endpoint is media
+        if ($endpoint === 'media') {
+            $contentType = 'multipart/form-data';
+            $payload = $this->payload;
+        } else {
+            $contentType = 'application/json';
+            $payload = json_encode($this->payload);
+        }
 
-		return $request->run($endpoint)
-			->toJson(true)
-			->getBody();
+        $request = Request::POST($this->endpoint, $payload)
+            ->addOpts([
+                CURLOPT_HTTPHEADER => [
+                    'Authorization: Bearer ' . $this->token,
+                    'Content-Type: ' . $contentType
+                ]
+            ]);
+
+        return $request->run($endpoint)
+            ->toJson(true)
+            ->body();
     }
 
     public function addOpt(array $opt): static
