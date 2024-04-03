@@ -1,19 +1,19 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 class Product implements ObjectInterface
 {
     public string $product_retailer_id;
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }
 
     public function get(): array
     {
-        return ['product_retailer_id' =>  $this->product_retailer_id];
+        return ['product_retailer_id' => $this->product_retailer_id];
     }
 
     public function setProductRetailerId(string $product_retailer_id): Product

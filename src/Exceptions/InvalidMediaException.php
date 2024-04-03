@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Exceptions;
+namespace Kombyte\Whatsapp\Exceptions;
 
 use Mateodioev\Utils\Exceptions\ExceptionInterface;
 use UnexpectedValueException;

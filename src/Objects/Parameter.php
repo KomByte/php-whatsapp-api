@@ -1,21 +1,21 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
+use Kombyte\Whatsapp\Types\ParameterType;
 use Mateodioev\Utils\Arrays;
-use Mateodioev\WhatsappApi\Types\ParameterType;
 
 class Parameter extends abstractObject implements ObjectInterface
 {
     public string $type;
-    public ?string $text = null;
-    public ?Currency $currency = null;
+    public ?string $text        = null;
+    public ?Currency $currency  = null;
     public ?DateTime $date_time = null;
-    public ?Media $image = null;
-    public ?Media $document = null;
-    public ?Media $video = null;
+    public ?Media $image        = null;
+    public ?Media $document     = null;
+    public ?Media $video        = null;
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

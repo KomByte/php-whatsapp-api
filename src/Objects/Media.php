@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 use Mateodioev\Utils\Arrays;
 
@@ -9,13 +9,13 @@ use Mateodioev\Utils\Arrays;
  */
 class Media extends abstractObject implements ObjectInterface
 {
-    public string $id = '';
-    public string $link = '';
-    public string $caption = '';
+    public string $id       = '';
+    public string $link     = '';
+    public string $caption  = '';
     public string $filename = '';
     public string $provider = '';
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

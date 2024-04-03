@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 use Mateodioev\Utils\Arrays;
 
@@ -13,8 +13,8 @@ class Action extends abstractObject implements ObjectInterface
     /**
      * @var Buttons[]
      */
-    public array $buttons = [];
-    public string $catalog_id = '';
+    public array $buttons              = [];
+    public string $catalog_id          = '';
     public string $product_retailer_id = '';
     /**
      * @var Section[]
@@ -24,7 +24,7 @@ class Action extends abstractObject implements ObjectInterface
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

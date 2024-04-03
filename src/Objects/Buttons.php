@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 class Buttons extends abstractObject implements ObjectInterface
 {
@@ -11,7 +11,7 @@ class Buttons extends abstractObject implements ObjectInterface
     public string $title;
     public string $id;
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }
@@ -23,11 +23,11 @@ class Buttons extends abstractObject implements ObjectInterface
     public function get(): array
     {
         return [
-            'type' => $this->type,
+            'type'      => $this->type,
             $this->type => [
-                'id' => $this->id,
-                'title' => $this->title
-            ]
+                'id'    => $this->id,
+                'title' => $this->title,
+            ],
         ];
     }
 

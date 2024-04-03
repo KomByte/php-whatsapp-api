@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 use Mateodioev\Utils\Arrays;
 
@@ -13,13 +13,13 @@ class Section extends abstractObject implements ObjectInterface
     /**
      * @var Row[]
      */
-    public ?array $rows = null;
+    public ?array $rows   = null;
     public ?string $title = null;
 
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

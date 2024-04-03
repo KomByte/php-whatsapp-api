@@ -1,12 +1,12 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 class Language implements ObjectInterface
 {
     public string $code;
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

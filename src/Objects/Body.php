@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#interactive-object
@@ -9,7 +9,7 @@ class Body implements ObjectInterface
 {
     public string $text;
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

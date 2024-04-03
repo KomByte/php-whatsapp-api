@@ -1,13 +1,13 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 class Text implements ObjectInterface
 {
     public string $body;
     public bool $preview_url = true;
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }
@@ -15,8 +15,8 @@ class Text implements ObjectInterface
     public function get(): array
     {
         return [
-            'body' => $this->body,
-            'preview_url' => $this->preview_url
+            'body'        => $this->body,
+            'preview_url' => $this->preview_url,
         ];
     }
 

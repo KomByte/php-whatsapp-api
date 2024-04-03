@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#interactive-object

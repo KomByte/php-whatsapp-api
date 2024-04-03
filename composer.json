@@ -13,7 +13,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Mateodioev\\WhatsappApi\\": "src/"
+            "Kombyte\\Whatsapp\\": "src/"
         }
     }
 }

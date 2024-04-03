@@ -1,6 +1,6 @@
 <?php
 
-use Mateodioev\WhatsappApi\Messages;
+use Kombyte\Whatsapp\Messages;
 use PHPUnit\Framework\TestCase;
 
 class MessagesTest extends TestCase
@@ -9,7 +9,7 @@ class MessagesTest extends TestCase
 
     public function testSendText()
     {
-        $api = new Messages(new \Mateodioev\WhatsappApi\Api($this->token, 111111111111111111));
+        $api = new Messages(new \Kombyte\Whatsapp\Api($this->token, 111111111111111111));
 
         $result = $api->sendText('Hola', true);
 

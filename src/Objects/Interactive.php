@@ -1,9 +1,9 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
+use Kombyte\Whatsapp\Types\InteractiveType;
 use Mateodioev\Utils\Arrays;
-use Mateodioev\WhatsappApi\Types\InteractiveType;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#interactive-object
@@ -11,11 +11,10 @@ use Mateodioev\WhatsappApi\Types\InteractiveType;
 class Interactive extends abstractObject implements ObjectInterface
 {
     public Action $action;
-    public ?Body $body = null;
+    public ?Body $body     = null;
     public ?Footer $footer = null;
     public ?Header $header = null;
     public string $type;
-
 
     /**
      * @throws \ReflectionException
@@ -26,7 +25,7 @@ class Interactive extends abstractObject implements ObjectInterface
         return Arrays::DeleteEmptyKeys($properties);
     }
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

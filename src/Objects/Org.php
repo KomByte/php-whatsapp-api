@@ -1,20 +1,20 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#contacts-object
  */
 class Org extends abstractObject implements ObjectInterface
 {
-    public string $company = '';
+    public string $company    = '';
     public string $department = '';
-    public string $title = '';
+    public string $title      = '';
 
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

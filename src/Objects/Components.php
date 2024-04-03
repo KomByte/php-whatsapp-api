@@ -1,8 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
-use Mateodioev\WhatsappApi\Types\ComponentType;
+use Kombyte\Whatsapp\Types\ComponentType;
 
 class Components extends abstractObject implements ObjectInterface
 {
@@ -13,7 +13,7 @@ class Components extends abstractObject implements ObjectInterface
      */
     public array $parameters = [];
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

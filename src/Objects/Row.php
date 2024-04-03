@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 use Mateodioev\Utils\Arrays;
 
@@ -13,7 +13,7 @@ class Row extends abstractObject implements ObjectInterface
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

@@ -1,13 +1,17 @@
 <?php
 
-namespace Mateodioev\WhatsappApi;
+namespace Kombyte\Whatsapp;
 
+use Kombyte\Whatsapp\Exceptions\InvalidMediaException;
+use Kombyte\Whatsapp\Objects\Contacts;
+use Kombyte\Whatsapp\Objects\Interactive;
+use Kombyte\Whatsapp\Objects\Location;
+use Kombyte\Whatsapp\Objects\Media;
+use Kombyte\Whatsapp\Objects\Reaction;
+use Kombyte\Whatsapp\Objects\Template;
+use Kombyte\Whatsapp\Objects\Text;
 use Mateodioev\Utils\Network;
-use Mateodioev\WhatsappApi\Exceptions\InvalidMediaException;
-use Mateodioev\WhatsappApi\Objects\{Contacts, Interactive, Location, Media, Reaction, Template, Text};
 use stdClass;
-
-use function substr;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages
@@ -18,7 +22,8 @@ class Messages
 
     private array $allowedMediaTypes = ['audio', 'document', 'image', 'sticker', 'video'];
 
-    public function __construct(protected Api $api) {}
+    public function __construct(protected Api $api)
+    {}
 
     /**
      * Reply to message id
@@ -36,7 +41,7 @@ class Messages
      * @param string|integer $phoneNumber Phone number or wa_id
      * @return Messages
      */
-    public function to(string|int $phoneNumber): Messages
+    public function to(string | int $phoneNumber): Messages
     {
         $this->api->addOpt(['to' => $phoneNumber]);
         return $this;
@@ -53,8 +58,8 @@ class Messages
     {
         return $this->api->addOpt([
             'recipient_type' => 'individual',
-            'type' => 'text',
-            'text' => Text::new()->setBody($message)->setPreviewUrl($previewUrl)->get()
+            'type'           => 'text',
+            'text'           => Text::new ()->setBody($message)->setPreviewUrl($previewUrl)->get(),
         ])->send($this->type);
     }
 
@@ -66,14 +71,14 @@ class Messages
      * @throws \ReflectionException
      * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#reaction-object
      */
-	public function sendReaction(string $messageId, string $emoji): stdClass
-	{
-		return $this->api->addOpt([
-			'recipient_type' => 'individual',
-			'type' => 'reaction',
-            'reaction' => Reaction::new()->setMessageId($messageId)->setEmoji($emoji)->get()
-		])->send($this->type);
-	}
+    public function sendReaction(string $messageId, string $emoji): stdClass
+    {
+        return $this->api->addOpt([
+            'recipient_type' => 'individual',
+            'type'           => 'reaction',
+            'reaction'       => Reaction::new ()->setMessageId($messageId)->setEmoji($emoji)->get(),
+        ])->send($this->type);
+    }
 
     /**
      * Send media
@@ -92,7 +97,7 @@ class Messages
         }
 
         // Media type for send
-        $mediaObj = Media::new()->setId($media);
+        $mediaObj = Media::new ()->setId($media);
         if (Network::IsValidUrl($media)) {
             $mediaObj->setLink($media)
                 ->setId('');
@@ -102,8 +107,8 @@ class Messages
 
         return $this->api->addOpt([
             'recipient_type' => 'individual',
-            'type' => $mediaType,
-            $mediaType => $mediaObj->get()
+            'type'           => $mediaType,
+            $mediaType       => $mediaObj->get(),
         ])->send($this->type);
     }
 
@@ -115,8 +120,8 @@ class Messages
     public function sendLocation(Location $location): stdClass
     {
         return $this->api->addOpt([
-            'type' => 'location',
-            'location' => $location->get()
+            'type'     => 'location',
+            'location' => $location->get(),
         ])->send($this->type);
     }
 
@@ -129,8 +134,8 @@ class Messages
     public function sendContact(array $contacts): stdClass
     {
         return $this->api->addOpt([
-          'type' => 'contacts',
-          'contacts' => array_map(fn($contact) => $contact->get(), $contacts)
+            'type'     => 'contacts',
+            'contacts' => array_map(fn($contact) => $contact->get(), $contacts),
         ])->send($this->type);
     }
 
@@ -140,8 +145,8 @@ class Messages
     public function sendInteractive(Interactive $interactive): stdClass
     {
         return $this->api->addOpt([
-            'type' => 'interactive',
-            'interactive' => $interactive->get()
+            'type'        => 'interactive',
+            'interactive' => $interactive->get(),
         ])->send($this->type);
     }
 
@@ -151,8 +156,8 @@ class Messages
     public function sendTemplate(Template $template): stdClass
     {
         return $this->api->addOpt([
-          'type' => 'template',
-            'template' => $template->get()
+            'type'     => 'template',
+            'template' => $template->get(),
         ])->send($this->type);
     }
 
@@ -162,8 +167,8 @@ class Messages
     public function markAsRead(string $messageId): void
     {
         $this->api->addOpt([
-          'status' => 'read',
-          'message_id' => $messageId
+            'status'     => 'read',
+            'message_id' => $messageId,
         ])->send($this->type);
     }
 

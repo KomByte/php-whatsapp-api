@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 /**
  * https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#location-object
@@ -9,13 +9,13 @@ class Location extends abstractObject implements ObjectInterface
 {
     public float|int $longitude;
     public float|int $latitude;
-    public string $name = '';
+    public string $name    = '';
     public string $address = '';
 
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }
@@ -29,13 +29,13 @@ class Location extends abstractObject implements ObjectInterface
         return $this->getProperties();
     }
 
-    public function setLongitude(float|int $longitude): Location
+    public function setLongitude(float | int $longitude): Location
     {
         $this->longitude = $longitude;
         return $this;
     }
 
-    public function setLatitude(float|int $latitude): Location
+    public function setLatitude(float | int $latitude): Location
     {
         $this->latitude = $latitude;
         return $this;

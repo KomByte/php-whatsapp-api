@@ -1,9 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Types;
+namespace Kombyte\Whatsapp\Types;
 
-enum InteractiveType implements TypeInterface
-{
+enum InteractiveType implements TypeInterface {
     case BUTTON;
     case LIST;
     case PRODUCT;

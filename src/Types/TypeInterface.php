@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Types;
+namespace Kombyte\Whatsapp\Types;
 
 interface TypeInterface
 {

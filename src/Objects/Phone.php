@@ -1,8 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
-use Mateodioev\WhatsappApi\Types\PhoneType;
+use Kombyte\Whatsapp\Types\PhoneType;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#contacts-object
@@ -10,13 +10,13 @@ use Mateodioev\WhatsappApi\Types\PhoneType;
 class Phone extends abstractObject implements ObjectInterface
 {
     public string $phone = '';
-    public string $type = '';
+    public string $type  = '';
     public string $wa_id = '';
 
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

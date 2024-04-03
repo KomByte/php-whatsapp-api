@@ -1,17 +1,11 @@
 <?php
 
-namespace Mateodioev\WhatsappApi;
-
-use Mateodioev\Request\Request;
-
-use function sprintf;
-use function json_encode;
-use function array_merge;
+namespace Kombyte\Whatsapp;
 
 class Api
 {
     public const BASE_URL = 'https://graph.facebook.com/%s/%s/';
-    public const VERSION = 'v16.0';
+    public const VERSION  = 'v16.0';
 
     public array $payload = ['messaging_product' => 'whatsapp'];
     public string $endpoint;
@@ -27,18 +21,16 @@ class Api
         // Use multipart/form-data if endpoint is media
         if ($endpoint === 'media') {
             $contentType = 'multipart/form-data';
-            $payload = $this->payload;
+            $payload     = $this->payload;
         } else {
             $contentType = 'application/json';
-            $payload = json_encode($this->payload);
+            $payload     = json_encode($this->payload);
         }
 
-        $request = Request::POST($this->endpoint, $payload)
-            ->addOpts([
-                CURLOPT_HTTPHEADER => [
-                    'Authorization: Bearer ' . $this->token,
-                    'Content-Type: ' . $contentType
-                ]
+        $request = \Mateodioev\Request\Clients\Curl::POST($this->endpoint, $payload)
+            ->addOpt(CURLOPT_HTTPHEADER, [
+                'Authorization: Bearer ' . $this->token,
+                'Content-Type: ' . $contentType,
             ]);
 
         return $request->run($endpoint)

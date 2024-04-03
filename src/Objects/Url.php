@@ -1,8 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
-use Mateodioev\WhatsappApi\Types\UrlType;
+use Kombyte\Whatsapp\Types\UrlType;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#contacts-object
@@ -15,7 +15,7 @@ class Url extends abstractObject implements ObjectInterface
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

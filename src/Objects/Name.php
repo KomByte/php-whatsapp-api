@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#contacts-object
@@ -8,16 +8,16 @@ namespace Mateodioev\WhatsappApi\Objects;
 class Name extends abstractObject implements ObjectInterface
 {
     public string $formatted_name;
-    public string $first_name = '';
-    public string $last_name = '';
+    public string $first_name  = '';
+    public string $last_name   = '';
     public string $middle_name = '';
-    public string $suffix = '';
-    public string $prefix = '';
+    public string $suffix      = '';
+    public string $prefix      = '';
 
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

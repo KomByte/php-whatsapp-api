@@ -1,9 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Types;
+namespace Kombyte\Whatsapp\Types;
 
-enum ComponentType implements TypeInterface
-{
+enum ComponentType implements TypeInterface {
     case HEADER;
     case BODY;
     case FOOTER;

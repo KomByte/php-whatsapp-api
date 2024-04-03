@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 abstract class abstractObject
 {
@@ -12,11 +12,11 @@ abstract class abstractObject
     {
         $obj = new \ReflectionClass($this);
 
-        $params = [];
+        $params     = [];
         $properties = $obj->getProperties($filters);
 
         foreach ($properties as $property) {
-            $key = $property->getName();
+            $key   = $property->getName();
             $value = $obj->getProperty($key)->getValue($this);
 
             if ($value instanceof ObjectInterface) {

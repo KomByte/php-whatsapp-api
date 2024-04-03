@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 use Mateodioev\Utils\Arrays;
 
@@ -14,7 +14,7 @@ class Template extends abstractObject implements ObjectInterface
     public Language $language;
     public ?array $components = null;
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

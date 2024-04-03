@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#contacts-object
@@ -10,7 +10,7 @@ class Contacts extends abstractObject implements ObjectInterface
     /**
      * @var Address[] Full contact address(es) formatted as an addresses object.
      */
-	public array $addresses = [];
+    public array $addresses = [];
 
     /**
      * @var string YYYY-MM-DD formatted string.
@@ -35,8 +35,7 @@ class Contacts extends abstractObject implements ObjectInterface
      */
     public array $urls = [];
 
-
-	public static function new(): static
+    public static function new (): static
     {
         return new static();
     }
@@ -90,6 +89,5 @@ class Contacts extends abstractObject implements ObjectInterface
         $this->urls = $urls;
         return $this;
     }
-
 
 }

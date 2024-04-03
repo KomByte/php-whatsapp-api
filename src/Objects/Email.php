@@ -1,8 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
-use Mateodioev\WhatsappApi\Types\EmailType;
+use Kombyte\Whatsapp\Types\EmailType;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#contacts-object
@@ -11,12 +11,12 @@ class Email implements ObjectInterface
 {
 
     public string $email = '';
-    public string $type = '';
+    public string $type  = '';
 
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
         // Default type is HOME
         return (new static())->setType(EmailType::HOME);
@@ -29,7 +29,7 @@ class Email implements ObjectInterface
     {
         return [
             'email' => $this->email,
-            'type' => $this->type
+            'type'  => $this->type,
         ];
     }
 

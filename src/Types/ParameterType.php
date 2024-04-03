@@ -1,9 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Types;
+namespace Kombyte\Whatsapp\Types;
 
-enum ParameterType implements TypeInterface
-{
+enum ParameterType implements TypeInterface {
     case CURRENCY;
     case DATE_TIME;
     case DOCUMENT;

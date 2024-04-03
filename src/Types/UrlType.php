@@ -1,9 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Types;
+namespace Kombyte\Whatsapp\Types;
 
-enum UrlType implements TypeInterface
-{
+enum UrlType implements TypeInterface {
     case HOME;
     case WORK;
     public function getType(): string

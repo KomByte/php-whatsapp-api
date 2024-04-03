@@ -1,9 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Types;
+namespace Kombyte\Whatsapp\Types;
 
-enum AddressType implements TypeInterface
-{
+enum AddressType implements TypeInterface {
     case HOME;
     case WORK;
 

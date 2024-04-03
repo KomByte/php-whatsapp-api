@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
 class Currency implements ObjectInterface
 {
@@ -8,9 +8,9 @@ class Currency implements ObjectInterface
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
-        // TODO: Implement new() method.
+        return new static();
     }
 
     /**
@@ -18,6 +18,6 @@ class Currency implements ObjectInterface
      */
     public function get(): array
     {
-        // TODO: Implement get() method.
+        return [];
     }
 }

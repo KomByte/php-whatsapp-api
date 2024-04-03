@@ -1,9 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Types;
+namespace Kombyte\Whatsapp\Types;
 
-enum PhoneType implements TypeInterface
-{
+enum PhoneType implements TypeInterface {
     case CELL;
     case MAIN;
     case IPHONE;

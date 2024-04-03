@@ -1,37 +1,36 @@
 <?php
 
-use \Mateodioev\WhatsappApi;
+use Kombyte\Whatsapp;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$api = new WhatsappApi\Api($_ENV['WHATSAPP_API'], (int) $_ENV['WHATSAPP_PHONE_ID']);
-$message = new WhatsappApi\Messages($api);
+$api = new Whatsapp\Api($_ENV['WHATSAPP_API'], (int) $_ENV['WHATSAPP_PHONE_ID']);
+$message = new Whatsapp\Messages($api);
 
-$contact = WhatsappApi\Objects\Contacts::new()
+$contact = Whatsapp\Objects\Contacts::new ()
     ->setName(
-        WhatsappApi\Objects\Name::new()
+        Whatsapp\Objects\Name::new ()
             ->setFormattedName('Mr. Name...')
             ->setPrefix('Mr')
     )
     ->setAddresses([
-        WhatsappApi\Objects\Address::new()
-            ->setType(WhatsappApi\Types\AddressType::HOME)
+        Whatsapp\Objects\Address::new ()
+            ->setType(Whatsapp\Types\AddressType::HOME)
             ->setStreet('St Main Street')
             ->setCity('New York')
             ->setState('NY')
-            ->setCountryCode('US')
+            ->setCountryCode('US'),
     ])
     ->setEmails([
-        WhatsappApi\Objects\Email::new()
-            ->setType(WhatsappApi\Types\EmailType::HOME)
+        Whatsapp\Objects\Email::new ()
+            ->setType(Whatsapp\Types\EmailType::HOME)
             ->setEmail('name@email.com'),
-        WhatsappApi\Objects\Email::new()
-            ->setType(WhatsappApi\Types\EmailType::WORK)
-            ->setEmail('name@work.com')
+        Whatsapp\Objects\Email::new ()
+            ->setType(Whatsapp\Types\EmailType::WORK)
+            ->setEmail('name@work.com'),
     ]);
 
 $res = $message->to('my number')
     ->sendContact([$contact]);
 
 var_dump($res);
-

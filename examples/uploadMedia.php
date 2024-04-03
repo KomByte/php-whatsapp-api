@@ -1,6 +1,6 @@
 <?php
 
-use Mateodioev\WhatsappApi as WspApi;
+use Kombyte\Whatsapp as WspApi;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -11,12 +11,13 @@ $target = '';
 // See https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media/#supported-media-types
 $mime = '';
 
+// Configure the file
 $file = new CURLFile($target);
 $file->setMimeType($mime);
 
-$media = new Media($api);
+// Send the file
+$media = new WspApi\Media($api);
 $mediaType = 'document';
-
 $fileId = $media->upload($file, $mediaType)->id;
 
 $messages = new WspApi\Messages($api);

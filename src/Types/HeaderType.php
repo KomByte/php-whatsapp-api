@@ -1,9 +1,8 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Types;
+namespace Kombyte\Whatsapp\Types;
 
-enum HeaderType implements TypeInterface
-{
+enum HeaderType implements TypeInterface {
     case TEXT;
     case VIDEO;
     case IMAGE;

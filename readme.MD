@@ -5,12 +5,12 @@ Call meta api
 ## Installation
 
 ```bash
-composer require mateodioev/meta-whatsapp-api
+composer require kombyte/meta-whatsapp-api
 ```
 
 ```php
-use Mateodioev\WhatsappApi\Api;
-use Mateodioev\WhatsappApi\Messages;
+use Kombyte\Whatsapp\Api;
+use Kombyte\Whatsapp\Messages;
 ```
 
 ## Usage

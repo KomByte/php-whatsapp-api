@@ -1,21 +1,21 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
-use Mateodioev\WhatsappApi\Types\AddressType;
+use Kombyte\Whatsapp\Types\AddressType;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#contacts-object
  */
 class Address extends abstractObject implements ObjectInterface
 {
-    public string $street = '';
-    public string $city = '';
-    public string $state = '';
-    public string $zip = '';
-    public string $country = '';
+    public string $street       = '';
+    public string $city         = '';
+    public string $state        = '';
+    public string $zip          = '';
+    public string $country      = '';
     public string $country_code = '';
-    public string $type = '';
+    public string $type         = '';
 
     /**
      * @throws \ReflectionException
@@ -25,7 +25,7 @@ class Address extends abstractObject implements ObjectInterface
         return $this->getProperties();
     }
 
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }

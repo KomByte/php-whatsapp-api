@@ -1,9 +1,9 @@
 <?php
 
-namespace Mateodioev\WhatsappApi\Objects;
+namespace Kombyte\Whatsapp\Objects;
 
+use Kombyte\Whatsapp\Types\HeaderType;
 use Mateodioev\Utils\Arrays;
-use Mateodioev\WhatsappApi\Types\HeaderType;
 
 /**
  * @see https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#header-object
@@ -12,14 +12,14 @@ class Header extends abstractObject implements ObjectInterface
 {
     public string $type;
     public ?Media $document = null;
-    public ?Media $image = null;
-    public ?string $text = null;
-    public ?Media $video = null;
+    public ?Media $image    = null;
+    public ?string $text    = null;
+    public ?Media $video    = null;
 
     /**
      * @inheritDoc
      */
-    public static function new(): static
+    public static function new (): static
     {
         return new static();
     }
