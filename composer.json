@@ -1,5 +1,5 @@
 {
-    "name": "mateodioev/meta-whatsapp-api",
+    "name": "kombyte/meta-whatsapp-api",
     "description": "Access to Whatsapp cloud api (meta)",
     "type": "library",
     "require": {
